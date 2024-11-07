@@ -24,6 +24,47 @@ robots:
   ground:
     module: env/ground
 
+  kinova:
+    ObserverPipelines:
+      - name: "EncoderAndBodySensor"
+        observers:
+          - type: Encoder
+          - type: BodySensor
+    forceSensors:
+    - externalTorqueSensor
+    maxPressureThreshold: 50
+    initial_posture:
+      completion:
+        eval: 0.06
+      target:
+        joint_1: [0.0]
+        joint_2: [0.262]
+        joint_3: [3.14]
+        joint_4: [-2.269]
+        joint_5: [0.0]
+        joint_6: [0.96]
+        joint_7: [1.57]
+    motion:
+      duration: 30
+      stiffness: 10
+      percentLimits: 0.8
+      joints:
+      # - name: joint_1
+      #   period: 10
+      # - name: joint_2
+      #   period: 10
+      # - name: joint_3
+      #   period: 10
+      - name: joint_4
+        period: 10
+      - name: joint_5
+        period: 10
+      - name: joint_6
+        period: 20
+      - name: joint_7
+        period: 20
+
+
   jvrc1:
     ObserverPipelines:
       - name: "EncoderAndBodySensor"
