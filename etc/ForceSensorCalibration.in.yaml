@@ -434,3 +434,55 @@ panda_default:
     iDist: 0.7
     sDist: 0.04
     damping: 0.0
+
+kinova:
+  ObserverPipelines:
+  - name: Pipeline
+    observers:
+      - type: Encoder
+        config:
+          velocity: encoderVelocities
+  SingularityThreshold: 0.08
+  forceSensors:
+  - [externalTorqueSensor]
+  initial_posture:
+    completion:
+      eval: 0.05
+    target:
+        joint_1: [0.0]
+        joint_2: [0.262]
+        joint_3: [3.14]
+        joint_4: [-2.269]
+        joint_5: [0.0]
+        joint_6: [0.96]
+        joint_7: [1.57]
+  motion:
+    duration: 50
+    stiffness: 10
+    percentLimits: 0.8
+    joints:
+    - name: joint_1
+      period: 11
+    - name: joint_2
+      period: 12
+    - name: joint_3
+      period: 13
+    - name: joint_4
+      period: 14
+    - name: joint_5
+      period: 15
+    - name: joint_6
+      period: 16
+    - name: joint_7
+      period: 17
+  # collisions:
+  # - body1: panda_link6*
+  #   body2: ground
+  #   iDist: 0.7
+  #   sDist: 0.04
+  #   damping: 0.0
+  # - body1: panda_link7*
+  #   body2: ground
+  #   iDist: 0.7
+  #   sDist: 0.04
+  #   damping: 0.0

@@ -41,7 +41,7 @@ void CheckResults::start(mc_control::fsm::Controller & ctl)
     const auto filename = calib_path + "/calib_data." + sensorN;
     mc_rtc::log::info("[{}] Loading calibration file {}", name(), filename);
     auto & sensor = ctl.robot().forceSensor(sensorN);
-    sensor.loadCalibrator(filename, ctl.robot().mbc().gravity);
+    const_cast<mc_rbdyn::ForceSensor&>(sensor).loadCalibrator(filename, ctl.robot().mbc().gravity);
 
     ctl.logger().addLogEntry(sensor.name() + "_calibrated",
                              [&robot, &sensor]() { return sensor.wrenchWithoutGravity(robot); });
