@@ -64,7 +64,7 @@ void RunCalibrationScript::start(mc_control::fsm::Controller & ctl_)
        && !robotConf("initialGuess")(s)("autocompute", false))
     {
       initialGuess = robotConf("initialGuess")(s);
-      mc_rtc::log::info("Using provided initial guess for \"{}\":\n{}", s, initialGuess);
+      mc_rtc::log::info("Using provided initial guess for \"{}\":\n{}", s, initialGuess.to_string());
     }
     else
     { // No initial guess was provided and we need to autocompute it
@@ -77,7 +77,7 @@ void RunCalibrationScript::start(mc_control::fsm::Controller & ctl_)
       }
       initialGuess = computeInitialGuessFromModel(ctl_.robot(), s, includeParent, verbose);
       mc_rtc::log::info("Computed initial guess for \"{}\" from model (includeParent: {}, verbose: {}):\n{} ", s,
-                        includeParent, verbose, initialGuess);
+                        includeParent, verbose, initialGuess.to_string());
     }
     guess_.push_back(initialGuess);
   }

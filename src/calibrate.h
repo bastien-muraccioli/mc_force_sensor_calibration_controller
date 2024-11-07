@@ -10,21 +10,25 @@ struct InitialGuess
   std::array<double, 3> rpy = {0};
   std::array<double, 3> com = {0};
   std::array<double, 6> offset = {0};
-};
-
-inline std::ostream & operator<<(std::ostream & os, const InitialGuess & r)
-{
-  // clang-format off
-  return os << fmt::format(
-R"(mass        : {}
+ // Conversion to string using fmt::format
+  std::string to_string() const
+  {
+    return fmt::format(
+        R"(mass        : {}
 rpy         : {}, {}, {}
 com         : {}, {}, {}
 force offset: {}, {}, {}, {}, {}, {})",
-      r.mass,
-      r.rpy[0], r.rpy[1], r.rpy[2],
-      r.com[0], r.com[1], r.com[2],
-      r.offset[0], r.offset[1], r.offset[2], r.offset[3], r.offset[4], r.offset[5]);
-  // clang-format on
+        mass,
+        rpy[0], rpy[1], rpy[2],
+        com[0], com[1], com[2],
+        offset[0], offset[1], offset[2], offset[3], offset[4], offset[5]);
+  }
+};
+
+// Overload operator<< to use to_string() for ostream support
+inline std::ostream &operator<<(std::ostream &os, const InitialGuess &r)
+{
+  return os << r.to_string();
 }
 
 namespace mc_rtc
