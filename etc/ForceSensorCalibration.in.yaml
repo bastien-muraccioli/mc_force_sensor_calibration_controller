@@ -26,95 +26,97 @@ robots:
 
   kinova:
     ObserverPipelines:
-      - name: "EncoderAndBodySensor"
-        observers:
-          - type: Encoder
-          - type: BodySensor
+    - name: Pipeline
+      observers:
+        - type: Encoder
+          config:
+            velocity: encoderVelocities
+    SingularityThreshold: 0.08
     forceSensors:
-    - externalTorqueSensor
+    - EEForceSensor
     maxPressureThreshold: 50
     initial_posture:
       completion:
-        eval: 0.06
+        eval: 0.05
       target:
         joint_1: [0.0]
-        joint_2: [0.262]
+        joint_2: [0.59]
         joint_3: [3.14]
-        joint_4: [-2.269]
+        joint_4: [-1.56]
         joint_5: [0.0]
-        joint_6: [0.96]
+        joint_6: [0.483]
         joint_7: [1.57]
     motion:
-      duration: 30
+      duration: 50
       stiffness: 10
       percentLimits: 0.8
       joints:
-      # - name: joint_1
-      #   period: 10
-      # - name: joint_2
-      #   period: 10
-      # - name: joint_3
-      #   period: 10
+      - name: joint_1
+        period: 11
+      - name: joint_2
+        period: 12
+      - name: joint_3
+        period: 13
       - name: joint_4
-        period: 10
+        period: 14
       - name: joint_5
-        period: 10
+        period: 15
       - name: joint_6
-        period: 20
+        period: 16
       - name: joint_7
-        period: 20
+        period: 17
 
 
-  jvrc1:
-    ObserverPipelines:
-      - name: "EncoderAndBodySensor"
-        observers:
-          - type: Encoder
-          - type: BodySensor
-    forceSensors:
-    - LeftHandForceSensor
-    - RightHandForceSensor
-    - LeftFootForceSensor
-    - RightFootForceSensor
-    maxPressureThreshold: 50
-    initial_posture:
-      completion:
-        eval: 0.06
-      target:
-        ## Arms
-        R_SHOULDER_P: [-0.4]
-        L_SHOULDER_P: [-0.4]
-        R_SHOULDER_R: [-0.5]
-        L_SHOULDER_R: [0.5]
-        R_ELBOW_P: [-1.5]
-        L_ELBOW_P: [-1.5]
-        ## Legs
-        L_HIP_R: [0.25]
-        R_HIP_R: [-0.25]
-    motion:
-      duration: 30
-      stiffness: 10
-      percentLimits: 0.8
-      joints:
-        # Left wrist
-      - name: L_WRIST_R
-        period: 16
-      - name: L_WRIST_Y
-        period: 20
-        # right wrist
-      - name: R_WRIST_R
-        period: 16
-      - name: R_WRIST_Y
-        period: 20
-        # Legs
-      - name: R_ANKLE_P
-        period: 10
-      - name: L_ANKLE_P
-        period: 15
-      - name: R_ANKLE_R
-        period: 10
-      - name: L_ANKLE_R
-        period: 15
+  # jvrc1:
+  #   ObserverPipelines:
+  #     - name: "EncoderAndBodySensor"
+  #       observers:
+  #         - type: Encoder
+  #         - type: BodySensor
+  #   forceSensors:
+  #   - LeftHandForceSensor
+  #   - RightHandForceSensor
+  #   - LeftFootForceSensor
+  #   - RightFootForceSensor
+  #   maxPressureThreshold: 50
+  #   initial_posture:
+  #     completion:
+  #       eval: 0.06
+  #     target:
+  #       ## Arms
+  #       R_SHOULDER_P: [-0.4]
+  #       L_SHOULDER_P: [-0.4]
+  #       R_SHOULDER_R: [-0.5]
+  #       L_SHOULDER_R: [0.5]
+  #       R_ELBOW_P: [-1.5]
+  #       L_ELBOW_P: [-1.5]
+  #       ## Legs
+  #       L_HIP_R: [0.25]
+  #       R_HIP_R: [-0.25]
+  #   motion:
+  #     duration: 30
+  #     stiffness: 10
+  #     percentLimits: 0.8
+  #     joints:
+  #       # Left wrist
+  #     - name: L_WRIST_R
+  #       period: 16
+  #     - name: L_WRIST_Y
+  #       period: 20
+  #       # right wrist
+  #     - name: R_WRIST_R
+  #       period: 16
+  #     - name: R_WRIST_Y
+  #       period: 20
+  #       # Legs
+  #     - name: R_ANKLE_P
+  #       period: 10
+  #     - name: L_ANKLE_P
+  #       period: 15
+  #     - name: R_ANKLE_R
+  #       period: 10
+  #     - name: L_ANKLE_R
+  #       period: 15
 
 
 # General constraints, always on
